@@ -1,0 +1,48 @@
+
+
+<div ng-show="!connection">
+    <div class="alert alert-info">
+        Please select a connection to show the available entities
+    </div>
+</div>
+
+<div class="panel">
+    <b>Select a connection</b>
+    <select ng-change="getEntities()" ng-disabled="isModified()" class="form-control" ng-model="connection" ng-options="v as v.name for v in connections"></select>
+    <p class="pull-right">
+        <i>{{connection.description}}</i>
+    </p>
+</div>
+
+
+<div class="panel-body" ng-show="connection">
+    <div class="panel-body">
+        <table class="table table-bordered">
+            <tr>
+                <th>Driver</th>
+                <td>{{connection.driver}}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{connection.description}}</td>
+            </tr>
+            <tr>
+                <th>Database</th>
+                <td>{{connection.database}}</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <h2>Available Entities</h2>
+    <ul class="list-group">
+        <li class="list-group-item clearfix" ng-repeat="entity in entities">
+            <span>{{entity.table}}</span>
+            <div class="btn-group pull-right">
+                <a class="btn btn-default" ng-click="showEntity(entity)">Show Schema</a>
+                <a class="btn btn-default" ng-href="#/explorer/entity/{{connection.name}}/{{entity.table}}">Create Content-Type</a>
+            </div>
+    </ul>
+
+
+</div>

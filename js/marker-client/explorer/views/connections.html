@@ -1,0 +1,27 @@
+<h2>Available Connections</h2>
+<div class="panel">
+    <div class="panel-body">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Driver</th>
+                <th>Host</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Database</th>
+                <th>Prefix</th>
+            </tr>
+            <tr ng-repeat="row in connections" ng-click="setItem(row)" ng-class="{'active':item.id === row.id}">
+                <td>{{row.id}}</td>
+                <td>{{row.name}}</td>
+                <td>{{row.driver}}</td>
+                <td>{{row.host}}</td>
+                <td>{{row.username}}</td>
+                <td>{{row.password}}</td>
+                <td>{{row.database}}</td>
+                <td>{{row.prefix}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="panel">
+    <b>Select a menu</b>
+    <select ng-disabled="isModified()" class="form-control" ng-model="menu" ng-options="v as v.title for (k,v) in menus"></select>
+    <p class="pull-right">
+        <i>{{menu.description}}</i>
+    </p>
+    <p></p>
+    <p>
+        <b>Add new item to {{menu.title}}</b><br/>
+        <button type="button" ng-click="addNew()" class="btn btn-default">New Item</button>
+    </p>
+
+    <div class="panel-body">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Href</th>
+            </tr>
+            <tr ng-repeat="row in menu.items" ng-click="setItem(row)" ng-class="{'active':item.id === row.id}">
+                <td>{{row.id}}</td>
+                <td>{{row.title}}</td>
+                <td>{{row.href}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<form name="menuitem" role="form" ng-show="item" ng-submit="saveItem(item)" class="animate toggle">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input id="title" type="text" ng-model="item.title" class="form-control" required="required"/>
+    </div>
+    <div class="form-group">
+        <label for="href">Href</label>
+        <input id="href" type="text" ng-model="item.href" class="form-control" required="required"/>
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" ng-model="item.description" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary" btn-toggle="working" ng-disabled="!isModified() || menuitem.$invalid">{{item.id?'Update':'Create'}}</button>
+    <button type="button" class="btn" ng-click="cancel()">Cancel</button>
+    <button type="button" class="btn btn-danger" ng-click="delete()">Delete</button>
+</form>

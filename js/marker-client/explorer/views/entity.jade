@@ -1,0 +1,39 @@
+.modal-header
+	h3.modal-title {{ connection.name + '/' + entity.name }}
+
+.modal-body.alert.alert-danger(ng-show="entity.primarykeys && entity.primarykeys.length === 0") Tables without primary keys, cannot be tracked
+h4 Columns
+table.table.table-condensed.table-full-width.table-hover
+	tr
+		th Name
+		th Low Level Type
+		th Not null
+		th Default
+		th Mapped Type
+		th 
+    
+	tr(ng-repeat="column in entity.columns")
+		th {{column.name}} <p class="muted">{{column.comment}}</p>
+		td <code>{{column.type}}[{{column.length}}, {{column.precision}}]</code>
+		td {{column.notnull}}
+		td {{column.default}}
+		td 
+			select(ng-model="column.mappedtype", 
+				ng-options="t as t.name group by t.group for t in types")
+            
+			select(ng-model="column.linkedTo", 
+				ng-if="column.mappedtype.name === 'Linked'", 
+				ng-options="c as c.name for c in ctypes")
+		td
+			span.glyphicon.glyphicon-star(ng-if="entity.primarykeys.indexOf(column.name) > -1",
+				title="PRIMARY KEY")
+			span.glyphicon.glyphicon-record(ng-if="column.referTo.columns",
+				title="refer to {{column.referTo.table}}.{{column.referTo.columns}}") 
+				code {{column.referTo.table}}.{{column.referTo.columns}}
+        
+
+.modal-footer
+	button.btn.btn-primary(ng-click="cancel()") OK 
+
+
+

@@ -1,0 +1,30 @@
+
+<div class="modal-header">
+  <h3 class="modal-title">{{ connection.name + '/' + entity.name }}</h3>
+</div>
+<div ng-show="entity.primarykeys &amp;&amp; entity.primarykeys.length === 0" class="modal-body alert alert-danger">Tables without primary keys, cannot be tracked</div>
+<h4>Columns</h4>
+<table class="table table-condensed table-full-width table-hover">
+  <tr>
+    <th>Name</th>
+    <th>Low Level Type</th>
+    <th>Not null</th>
+    <th>Default</th>
+    <th>Mapped Type</th>
+    <th></th>
+  </tr>
+  <tr ng-repeat="column in entity.columns">
+    <th>{{column.name}} <p class="muted">{{column.comment}}</p></th>
+    <td><code>{{column.type}}[{{column.length}}, {{column.precision}}]</code></td>
+    <td>{{column.notnull}}</td>
+    <td>{{column.default}}</td>
+    <td>
+      <select ng-model="column.mappedtype" ng-options="t as t.name group by t.group for t in types"></select>
+      <select ng-model="column.linkedTo" ng-if="column.mappedtype.name === 'Linked'" ng-options="c as c.name for c in ctypes"></select>
+    </td>
+    <td><span ng-if="entity.primarykeys.indexOf(column.name) &gt; -1" title="PRIMARY KEY" class="glyphicon glyphicon-star"></span><span ng-if="column.referTo.columns" title="refer to {{column.referTo.table}}.{{column.referTo.columns}}" class="glyphicon glyphicon-record"><code>{{column.referTo.table}}.{{column.referTo.columns}}</code></span></td>
+  </tr>
+</table>
+<div class="modal-footer">
+  <button ng-click="cancel()" class="btn btn-primary">OK </button>
+</div>

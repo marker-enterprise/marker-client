@@ -1,0 +1,28 @@
+{
+  "name": "marker-client",
+  "version": "0.1.0",
+  "description": "Marker client",
+  "main": "GruntFile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/marker-enterprise/marker-client.git"
+  },
+  "keywords": [
+    "CMS",
+    "Backoffice"
+  ],
+  "author": "Ahmad Moussawi",
+  "license": "GPL V2",
+  "bugs": {
+    "url": "https://github.com/marker-enterprise/marker-client/issues"
+  },
+  "homepage": "https://github.com/marker-enterprise/marker-client",
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-jade": "~0.11.0",
+    "grunt-contrib-watch": "~0.6.1"
+  }
+}

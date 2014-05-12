@@ -1,0 +1,8 @@
+<h1 class="page-header">Dashboard</h1>
+<mk-nav area="main" class="row placeholders">
+    <a ng-href="{{menu.href}}" ng-repeat="menu in items" class="col-xs-6 col-sm-3 placeholder">
+        <div class="app">{{menu.title}}</div>
+        <h4>{{menu.title}}</h4>
+        <span class="text-muted">{{menu.description}}</span>
+    </a>
+</mk-nav>
