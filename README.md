@@ -13,7 +13,7 @@ Marker Client is the client library for Marker Entreprise CMS
 change the server path to the path where **Marker Server** is installed
 
 ### server_type:
-The type of the backend underlaying technology
+The type of the backend underlying technology
 Available values: `C#_ASPNET_MVC<version>`, `PHP_LARAVEL<version>`, `JS_NODE`
 
 
