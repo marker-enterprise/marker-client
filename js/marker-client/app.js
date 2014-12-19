@@ -98,6 +98,10 @@ var ArrayHelper = {
     }
 };
 
+/**
+ * Url helper method
+ *
+ */
 var UrlHelper = {
     api: function(url) {
         return MarkerClient.path.api + (url || '');
