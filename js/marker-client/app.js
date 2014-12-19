@@ -38,37 +38,42 @@ var routes = [
     ['/users/edit/:userId', path.partials + 'users/edit.html', 'UsersEditCtrl'],
     ['/users/view/:userId', path.partials + 'users/view.html', 'UsersViewCtrl'],
     ['/users/delete/:userId', path.partials + 'users/delete.html', 'UsersDeleteCtrl'],
-            //Settings
-//    ['/settings', path.partials + 'settings/index.html', 'SettingsIndexCtrl']
+    //Settings
+    //    ['/settings', path.partials + 'settings/index.html', 'SettingsIndexCtrl']
 
 ];
 
 // Declare app level module which depends on filters, and services
-var app = angular.module('marker-client',
-        [
-            'ngRoute',
-//            'ngAuth',
-            'accountApp',
-            'ngSanitize',
-            'ngAnimate',
-            'ui.bootstrap',
-            'marker-client.filters',
-            'marker-client.services',
-            'marker-client.directives',
-            'marker-client.controllers',
-            'angularLocalStorage',
-            'marker-client.modules',
-            'marker-client.entities',
-            'marker-client.validation'
-        ]).
-        config(['$routeProvider', '$httpProvider', '$locationProvider',
-            function($routeProvider, $httpProvider, $locationProvider) {
-                //$locationProvider.html5Mode(true);
-                routes.forEach(function(route) {
-                    $routeProvider.when(route[0], {templateUrl: route[1], controller: route[2]});
-                });
-                $routeProvider.otherwise({redirectTo: '/'});
-            }]);
+var app = angular.module('marker-client', [
+    'ngRoute',
+    //            'ngAuth',
+    'accountApp',
+    'ngSanitize',
+    'ngAnimate',
+    'ui.bootstrap',
+    'marker-client.filters',
+    'marker-client.services',
+    'marker-client.directives',
+    'marker-client.controllers',
+    'angularLocalStorage',
+    'marker-client.modules',
+    'marker-client.entities',
+    'marker-client.validation'
+]).
+config(['$routeProvider', '$httpProvider', '$locationProvider',
+    function($routeProvider, $httpProvider, $locationProvider) {
+        //$locationProvider.html5Mode(true);
+        routes.forEach(function(route) {
+            $routeProvider.when(route[0], {
+                templateUrl: route[1],
+                controller: route[2]
+            });
+        });
+        $routeProvider.otherwise({
+            redirectTo: '/'
+        });
+    }
+]);
 
 
 
@@ -88,6 +93,7 @@ var ArrayHelper = {
             }
         }
 
+        // return the removed object 
         return removed;
     }
 };
